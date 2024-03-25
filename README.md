@@ -61,3 +61,12 @@ node index.js -a remove -i qdggE76Jtbfd9eWJHrssH
 Код відповідає технічному завданню проєкту
 У коді немає закоментованих ділянок коду
 Проєкт коректно працює з актуальною LTS-версією Node
+
+{
+"type": "module",
+"dependencies": {
+"colors": "^1.4.0",
+"commander": "^12.0.0",
+"nanoid": "^5.0.6"
+}
+}
