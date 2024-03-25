@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 
 const contactsPath = path.join("db", "contacts.json");
 
-async function listContacts() {
+export async function listContacts() {
   try {
     const contacts = await fs.readFile(contactsPath);
     const contactsJSON = JSON.parse(contacts.toString());
@@ -14,20 +14,17 @@ async function listContacts() {
   }
 }
 
-async function getContactById(contactId) {
+export async function getContactById(contactId) {
   try {
     const contacts = await listContacts();
-    const contactById = contacts.find((contact) => {
-      contact.id === contactId;
-      if (currentIndex === -1) return null;
-      return contactById;
-    });
+    const findeContact = contacts.find((contact) => contact.id === contactId);
+    return findeContact || null;
   } catch (er) {
     console.log(er);
   }
 }
 
-async function removeContact(contactId) {
+export async function removeContact(contactId) {
   try {
     const contacts = await listContacts();
     const newArray = contacts.filter((contact) => contact.id !== contactId);
@@ -41,7 +38,7 @@ async function removeContact(contactId) {
   }
 }
 
-async function addContact(name, email, phone) {
+export async function addContact(name, email, phone) {
   try {
     const contacts = await listContacts();
     const newContact = { id: nanoid(), name, email, phone };
@@ -52,4 +49,3 @@ async function addContact(name, email, phone) {
     console.log(er);
   }
 }
-module.exports = { listContacts, getContactById, removeContact, addContact };
